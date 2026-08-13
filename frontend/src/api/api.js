@@ -33,7 +33,10 @@ api.interceptors.response.use(
     } else if (error.response?.status === 403) {
       message.error("You don’t have permission to perform this action.");
     } else if (error.response?.status === 404) {
-      message.error("Requested resource not found.");
+      const url = error.config?.url || "";
+      if (!url.includes("/profile-image")) {
+        message.error("Requested resource not found.");
+      }
     } else if (error.response?.status >= 500) {
       message.error("Server error. Please try again later.");
     }

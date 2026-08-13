@@ -60,13 +60,8 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/api/courses/**").hasRole("ADMIN")
 
                         // Assessments, Enrollments, Feedback, Learning, Progress
-                        .requestMatchers("/api/assessments/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers("/api/enrollments/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers("/api/feedbacks/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers("/api/learning/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers("/api/progress/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers("/api/questions/**").hasAnyRole("USER", "ADMIN")
 
+                        .requestMatchers("/api/learning/**").hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthTokenFilter, UsernamePasswordAuthenticationFilter.class);

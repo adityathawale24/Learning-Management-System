@@ -361,8 +361,8 @@ function Users() {
             <Col span={8}>
               <Form.Item label="Role" name="role">
                 <Select>
-                  <Option value="USER">USER</Option>
-                  <Option value="ADMIN">ADMIN</Option>
+                  <Option value="ROLE_USER">USER</Option>
+                  <Option value="ROLE_ADMIN">ADMIN</Option>
                 </Select>
               </Form.Item>
             </Col>

@@ -20,11 +20,16 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        List<User> users = userRepository.findAll();
+        // FIX: Password field ko null karo — security leak tha (password hash bhi expose nahi hona chahiye)
+        users.forEach(u -> u.setPassword(null));
+        return users;
     }
 
     public User getUserById(UUID id) {
-        return userRepository.findById(id).orElse(null);
+        User user = userRepository.findById(id).orElse(null);
+        if (user != null) user.setPassword(null); // FIX: password hide karo
+        return user;
     }
 
     public User createUser(User user) {
@@ -33,7 +38,7 @@ public class UserService {
     }
 
     public void updateUserProfile(MultipartFile file, UUID id) throws IOException {
-        User user = getUserById(id);
+        User user = userRepository.findById(id).orElse(null);
         if (user == null) return;
         user.setProfileImage(file.getBytes());
         userRepository.save(user);
@@ -51,20 +56,23 @@ public class UserService {
             existingUser.setProfession(updatedUser.getProfession());
             existingUser.setLinkedin_url(updatedUser.getLinkedin_url());
             existingUser.setGithub_url(updatedUser.getGithub_url());
+            if (updatedUser.getIsActive() != null)
+                existingUser.setIsActive(updatedUser.getIsActive());
+            if (updatedUser.getRole() != null)
+                existingUser.setRole(updatedUser.getRole());
             return userRepository.save(existingUser);
         }
         return null;
     }
     
     public User getUserByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
-    
-    public User authenticateUser(String email, String password) {
-        return userRepository.findByEmailAndPassword(email, password);
+        User user = userRepository.findByEmail(email);
+        if (user != null) user.setPassword(null); // FIX: password hide karo
+        return user;
     }
 
     public void deleteUser(UUID id) {
         userRepository.deleteById(id);
     }
 }
+

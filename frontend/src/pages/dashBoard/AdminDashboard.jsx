@@ -9,9 +9,14 @@ import { authService } from "../../api/auth.service";
 function AdminDashboard() {
   const [current, setCurrent] = useState("dashboard");
   const [isAuthenticated, setIsAuthenticated] = useState(authService.isAdminAuthenticated());
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const handleLogout = async () => {
+    await authService.logout();
+    setIsAuthenticated(false);
+  };
 
   const renderContent = () => {
     switch (current) {
@@ -30,7 +35,7 @@ function AdminDashboard() {
     e.preventDefault();
     setError("");
 
-    const result = await authService.login(username, password);
+    const result = await authService.login(email, password);
 
     if (result.success && result.user.role === "ROLE_ADMIN") {
       setIsAuthenticated(true);
@@ -44,7 +49,7 @@ function AdminDashboard() {
 
   return (
     <div className="flex min-h-screen">
-      <SideBar current={current} onSelect={setCurrent} />
+      <SideBar current={current} onSelect={setCurrent} onLogout={handleLogout} />
       <section className="flex-1 bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-100 transition-all duration-300">
         <main className="p-8 font-poppins">{renderContent()}</main>
       </section>
@@ -61,11 +66,11 @@ function AdminDashboard() {
                   Email
                 </label>
                 <input
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-4 py-3 bg-white/30 border border-white/40 rounded-lg text-white placeholder-gray-200 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                  placeholder="Enter username"
+                  placeholder="Enter admin email"
                   required
                 />
               </div>

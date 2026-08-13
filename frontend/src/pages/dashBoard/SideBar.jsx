@@ -1,6 +1,6 @@
 import img1 from "../../assets/images/user.png";
 
-function SideBar({ current, onSelect }) {
+function SideBar({ current, onSelect, onLogout }) {
   const menuItems = [
     { key: "dashboard", label: "Dashboard", icon: "bx bxs-dashboard" },
     { key: "user", label: "Users", icon: "bx bxs-group" },
@@ -14,7 +14,7 @@ function SideBar({ current, onSelect }) {
         onClick={() => onSelect("dashboard")}
       >
         <img src={img1} alt="Admin Logo" className="w-10 h-10 rounded-full" />
-        <span className="text-lg font-semibold text-blue-900">LMS Admin</span>
+        <span className="text-lg font-semibold text-blue-900">CMS Admin</span>
       </div>
       <ul className="flex flex-col mt-6">
         {menuItems.map((item) => (
@@ -33,6 +33,15 @@ function SideBar({ current, onSelect }) {
           </li>
         ))}
       </ul>
+      <div className="mt-auto pt-6 border-t border-gray-200">
+        <button
+          onClick={onLogout}
+          className="w-full flex items-center gap-3 p-3 rounded-lg text-red-600 hover:bg-red-50 transition-colors mx-3"
+        >
+          <i className="bx bx-log-out text-lg" />
+          <span className="font-medium">Logout</span>
+        </button>
+      </div>
     </div>
   );
 }

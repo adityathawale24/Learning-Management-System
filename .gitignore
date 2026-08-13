@@ -125,3 +125,23 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+# VS Code
+.vscode/
+
+# Eclipse / Spring Tool Suite
+.classpath
+.factorypath
+.project
+.settings/
+
+# Maven build files
+target/
+**/target/
+
+# Node
+node_modules/
+**/node_modules/
+
+# Environment
+.env
+**/.env

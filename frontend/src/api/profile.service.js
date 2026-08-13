@@ -18,8 +18,8 @@ async function getProfileImage(userId) {
     const blobUrl = URL.createObjectURL(res.data);
     return { success: true, data: blobUrl };
   } catch (err) {
-    console.error("Error fetching profile image:", err);
-    return { success: false, error: "Unable to fetch profile image" };
+    // No image uploaded yet — silently ignore
+    return { success: false };
   }
 }
 

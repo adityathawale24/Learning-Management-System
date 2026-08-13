@@ -1,10 +1,8 @@
-// RegistrationForm.js
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../Components/common/Navbar";
 import { authService } from "../../api/auth.service";
-import { User, Mail, Phone, Lock, Calendar, MapPin, Briefcase, Github, Linkedin, UserPlus } from "lucide-react";
-import { InputField } from "../../Components/common/InputFeild";
+import { UserPlus } from "lucide-react";
 
 function RegistrationForm() {
   const navigate = useNavigate();
@@ -73,56 +71,22 @@ function RegistrationForm() {
                   Basic Information
                 </h3>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  {/* Full Name */}
-                  <InputField
-                    id="username"
-                    name="username"
-                    value={formData.username}
-                    onChange={handleChange}
-                    icon={<User className="h-5 w-5 text-gray-400" />}
-                    label="Full Name"
-                    required
-                    placeholder="Enter your full name"
-                  />
-
-                  {/* Email */}
-                  <InputField
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    icon={<Mail className="h-5 w-5 text-gray-400" />}
-                    label="Email Address"
-                    required
-                    placeholder="Enter your email"
-                  />
-
-                  {/* Phone */}
-                  <InputField
-                    id="mobileNumber"
-                    name="mobileNumber"
-                    type="tel"
-                    value={formData.mobileNumber}
-                    onChange={handleChange}
-                    icon={<Phone className="h-5 w-5 text-gray-400" />}
-                    label="Phone Number"
-                    required
-                    placeholder="Enter your phone number"
-                  />
-
-                  {/* Password */}
-                  <InputField
-                    id="password"
-                    name="password"
-                    type="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    icon={<Lock className="h-5 w-5 text-gray-400" />}
-                    label="Password"
-                    required
-                    placeholder="Create a strong password"
-                  />
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1">Full Name</label>
+                    <input id="username" name="username" value={formData.username} onChange={handleChange} required placeholder="Enter your full name" className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 text-gray-900" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1">Email Address</label>
+                    <input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required placeholder="Enter your email" className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 text-gray-900" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1">Phone Number</label>
+                    <input id="mobileNumber" name="mobileNumber" type="tel" value={formData.mobileNumber} onChange={handleChange} required placeholder="Enter your phone number" className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 text-gray-900" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1">Password</label>
+                    <input id="password" name="password" type="password" value={formData.password} onChange={handleChange} required placeholder="Create a strong password" className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 text-gray-900" />
+                  </div>
                 </div>
               </div>
 
@@ -132,16 +96,10 @@ function RegistrationForm() {
                   Personal Details
                 </h3>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  {/* DOB */}
-                  <InputField
-                    id="dob"
-                    name="dob"
-                    type="date"
-                    value={formData.dob}
-                    onChange={handleChange}
-                    icon={<Calendar className="h-5 w-5 text-gray-400" />}
-                    label="Date of Birth"
-                  />
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1">Date of Birth</label>
+                    <input id="dob" name="dob" type="date" value={formData.dob} onChange={handleChange} className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 text-gray-900" />
+                  </div>
 
                   {/* Gender */}
                   <div className="space-y-2">
@@ -171,25 +129,14 @@ function RegistrationForm() {
                   Professional Details
                 </h3>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <InputField
-                    id="location"
-                    name="location"
-                    value={formData.location}
-                    onChange={handleChange}
-                    icon={<MapPin className="h-5 w-5 text-gray-400" />}
-                    label="Location"
-                    placeholder="Enter your location"
-                  />
-
-                  <InputField
-                    id="profession"
-                    name="profession"
-                    value={formData.profession}
-                    onChange={handleChange}
-                    icon={<Briefcase className="h-5 w-5 text-gray-400" />}
-                    label="Profession"
-                    placeholder="Enter your profession"
-                  />
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1">Location</label>
+                    <input id="location" name="location" value={formData.location} onChange={handleChange} placeholder="Enter your location" className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 text-gray-900" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1">Profession</label>
+                    <input id="profession" name="profession" value={formData.profession} onChange={handleChange} placeholder="Enter your profession" className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 text-gray-900" />
+                  </div>
                 </div>
               </div>
 
@@ -199,25 +146,14 @@ function RegistrationForm() {
                   Social Links
                 </h3>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <InputField
-                    id="linkedin_url"
-                    name="linkedin_url"
-                    value={formData.linkedin_url}
-                    onChange={handleChange}
-                    icon={<Linkedin className="h-5 w-5 text-gray-400" />}
-                    label="LinkedIn"
-                    placeholder="https://linkedin.com/in/your-profile"
-                  />
-
-                  <InputField
-                    id="github_url"
-                    name="github_url"
-                    value={formData.github_url}
-                    onChange={handleChange}
-                    icon={<Github className="h-5 w-5 text-gray-400" />}
-                    label="GitHub"
-                    placeholder="https://github.com/your-username"
-                  />
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1">LinkedIn</label>
+                    <input id="linkedin_url" name="linkedin_url" value={formData.linkedin_url} onChange={handleChange} placeholder="https://linkedin.com/in/your-profile" className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 text-gray-900" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1">GitHub</label>
+                    <input id="github_url" name="github_url" value={formData.github_url} onChange={handleChange} placeholder="https://github.com/your-username" className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 text-gray-900" />
+                  </div>
                 </div>
               </div>
 

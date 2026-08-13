@@ -23,6 +23,9 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("User not found with email: " + email);
         }
+        if (Boolean.FALSE.equals(user.getIsActive())) {
+            throw new UsernameNotFoundException("Account is inactive. Please contact admin.");
+        }
         return UserPrincipal.create(user);
     }
 }

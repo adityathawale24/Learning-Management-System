@@ -5,6 +5,7 @@ import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,7 +24,7 @@ public class Course {
     @Column(name = "course_id", updatable = false, nullable = false, columnDefinition = "BINARY(16)")
     private UUID course_id;
 
-    @JsonProperty("course_name")
+    @JsonProperty("course_name")  //json m course name key se ayega
     private String course_name;
 
     private int price;
@@ -38,9 +39,5 @@ public class Course {
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<Feedback> feedbacks;
-    
-    @OneToMany(mappedBy = "course")
-    @JsonIgnore
-    private List<Questions> questions;
+    private List<Learning> enrollments;
 }

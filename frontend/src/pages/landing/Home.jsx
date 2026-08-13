@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../Components/common/Navbar";
 import Footer from "../../Components/common/Footer";
@@ -14,33 +14,6 @@ import bannerImg from "../../assets/images/home-banner.png";
 
 function Home() {
   const navigate = useNavigate();
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-
-  useEffect(() => {
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 2);
-
-    const updateTimer = () => {
-      const now = new Date().getTime();
-      const distance = targetDate.getTime() - now;
-
-      if (distance <= 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-        return;
-      }
-
-      setTimeLeft({
-        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((distance / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((distance / 1000 / 60) % 60),
-        seconds: Math.floor((distance / 1000) % 60),
-      });
-    };
-
-    updateTimer();
-    const interval = setInterval(updateTimer, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   const courses = [
     { id: 1, title: "JavaScript Beginner Course", img: c1, price: 499 },
@@ -92,7 +65,7 @@ function Home() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-snug mb-6 text-gray-100 animate-fadeInUp">
             Enhance your future with <br />
             <span className="sm:text-4xl md:text-5xl lg:text-6xl mt-6 text-white">
-              EduVerse Academy
+              CDAC CMS
             </span>
           </h2>
           <p className="text-gray-200 max-w-2xl mx-auto text-lg md:text-xl animate-fadeInUp delay-200">
@@ -171,41 +144,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Registration Section with Timer */}
-      <section className="relative px-6 py-24 flex flex-col items-center justify-center text-center bg-secondary/20">
-        <div className="relative z-10 max-w-3xl">
-          <p className="font-bold mb-4 text-lg uppercase tracking-wider text-warning-dark">
-            Get 100 Online Courses for Free
-          </p>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-8 leading-tight">
-            Register Now and Unlock Your Learning Journey
-          </h1>
-          <p className="mb-12 text-lg">
-            Join thousands of learners and access our top courses for free. Enhance your skills, earn certifications, and grow your future.
-          </p>
-
-          <div className="flex flex-wrap md:gap-6 gap-2 justify-center">
-            {[
-              { label: "Days", value: timeLeft.days },
-              { label: "Hours", value: timeLeft.hours },
-              { label: "Minutes", value: timeLeft.minutes },
-              { label: "Seconds", value: timeLeft.seconds },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center justify-center bg-white/20 backdrop-blur-md md:px-8 md:py-6 px-2 md:rounded-2xl rounded-lg shadow-xl"
-              >
-                <p className="md:text-4xl md:text-5xl font-extrabold text-primary/70">
-                  {item.value}
-                </p>
-                <span className="text-sm font-semibold mt-1 tracking-wide">
-                  {item.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <Footer />
     </div>

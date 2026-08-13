@@ -13,5 +13,6 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 
     boolean existsByRole(UserRole role);
 
-	User findByEmailAndPassword(String email, String password);
+    // NOTE: findByEmailAndPassword removed — plain text password comparison dangerous hai.
+    // Authentication Spring Security BCrypt se hoti hai AuthController mein.
 }

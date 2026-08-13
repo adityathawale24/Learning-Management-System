@@ -99,45 +99,12 @@ async function updateUser(userId, updatedData) {
   }
 }
 
-async function createQuestion(questionData) {
-  try {
-    const { data } = await api.post("/api/questions", questionData);
-    return { success: true, data };
-  } catch (err) {
-    console.error("Error creating question:", err);
-    return { success: false, error: err.response?.data?.message || "Unable to create question" };
-  }
-}
-
-async function updateQuestion(questionId, questionData) {
-  try {
-    const { data } = await api.put(`/api/questions/${questionId}`, questionData);
-    return { success: true, data };
-  } catch (err) {
-    console.error("Error updating question:", err);
-    return { success: false, error: err.response?.data?.message || "Unable to update question" };
-  }
-}
-
-async function deleteQuestion(questionId) {
-  try {
-    await api.delete(`/api/questions/${questionId}`);
-    return { success: true };
-  } catch (err) {
-    console.error("Error deleting question:", err);
-    return { success: false, error: err.response?.data?.message || "Unable to delete question" };
-  }
-}
-
 export const adminService = {
   getAllCourses,
   getCourseById,
   createCourse,
   updateCourse,
   deleteCourse,
-  createQuestion,
-  updateQuestion,
-  deleteQuestion,
   getAllUsers,
   updateUser,
   getAllLearning,

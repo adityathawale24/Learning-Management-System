@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/images/logo.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faChalkboardUser } from "@fortawesome/free-solid-svg-icons";
 import { authService } from "../../api/auth.service";
@@ -29,7 +28,7 @@ function Navbar(props) {
     <div>
       <nav className="bg-white w-full flex flex-row justify-between items-center px-[4vw] shadow-[2px_2px_10px_rgba(0,0,0,0.15)] z-[999]">
         <div className="flex items-center justify-center">
-          <img src={logo} alt="" className="w-[300px] h-[65px] cursor-pointer" />
+          <span className="text-2xl font-extrabold text-blue-900 cursor-pointer tracking-tight">CDAC CMS</span>
         </div>
         <div className="flex">
           <div id="menu-btn" className="hidden">
@@ -83,6 +82,44 @@ function Navbar(props) {
                   className="no-underline text-[rgb(21,21,100)] text-[17px] font-bold transition-all duration-300 ease-in-out hover:text-yellow-400"
                 >
                   Courses
+                </Link>
+              </li>
+            )}
+            {value === "about" ? (
+              <li className="list-none ml-5 rounded-[5px] bg-gradient-to-r from-blue-600 to-purple-600">
+                <Link
+                  to={"/about"}
+                  className="no-underline text-white text-[17px] font-bold transition-all duration-300 ease-in-out px-[10px] py-[2px] block hover:text-yellow-400"
+                >
+                  About Us
+                </Link>
+              </li>
+            ) : (
+              <li className="list-none ml-5">
+                <Link 
+                  to={"/about"}
+                  className="no-underline text-[rgb(21,21,100)] text-[17px] font-bold transition-all duration-300 ease-in-out hover:text-yellow-400"
+                >
+                  About Us
+                </Link>
+              </li>
+            )}
+            {value === "contact" ? (
+              <li className="list-none ml-5 rounded-[5px] bg-gradient-to-r from-blue-600 to-purple-600">
+                <Link
+                  to={"/contact"}
+                  className="no-underline text-white text-[17px] font-bold transition-all duration-300 ease-in-out px-[10px] py-[2px] block hover:text-yellow-400"
+                >
+                  Contact Us
+                </Link>
+              </li>
+            ) : (
+              <li className="list-none ml-5">
+                <Link 
+                  to={"/contact"}
+                  className="no-underline text-[rgb(21,21,100)] text-[17px] font-bold transition-all duration-300 ease-in-out hover:text-yellow-400"
+                >
+                  Contact Us
                 </Link>
               </li>
             )}
